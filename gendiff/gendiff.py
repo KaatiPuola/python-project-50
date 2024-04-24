@@ -39,6 +39,6 @@ def generate_diff(file_path1, file_path2):
     for index, key, value in diff:
         if value in CORRECT_VALUE:
             value = CORRECT_VALUE[value]
-        result += f'{INDEX[index]} {key}: {value}\n'
-    result += '}'
+        result += f'{INDEX[index]}{key}: {value}\n'
+    result += '}\n'
     return result
