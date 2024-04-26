@@ -5,3 +5,5 @@
 [![Actions Status](https://github.com/KaatiPuola/python-project-50/actions/workflows/pyci.yml/badge.svg)](https://github.com/KaatiPuola/python-project-50/actions)
 
 [![asciicast](https://asciinema.org/a/LwvlrLLdjlSdmBpnRLTBVImVe.svg)](https://asciinema.org/a/LwvlrLLdjlSdmBpnRLTBVImVe)
+
+[![asciicast](https://asciinema.org/a/n7RTa4h9uXXw2hqwAMOgeFgm8.svg)](https://asciinema.org/a/n7RTa4h9uXXw2hqwAMOgeFgm8)
