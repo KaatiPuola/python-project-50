@@ -18,6 +18,11 @@ def get_path(file_name):
              'file1.json',
              'file2.json',
              'result_json.txt'
+        ),
+        (
+             'file1.yml',
+             'file2.yml',
+             'result_json.txt'
         )
     ]
 )
