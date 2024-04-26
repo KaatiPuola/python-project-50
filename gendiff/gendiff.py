@@ -1,4 +1,4 @@
-import json
+from gendiff.parser import get_extension
 
 
 INDEX = {
@@ -15,10 +15,8 @@ CORRECT_VALUE = {
 
 
 def generate_diff(file_path1, file_path2):
-    with open(file_path1, 'r') as json1:
-        file1 = json.load(json1)
-    with open(file_path2, 'r') as json2:
-        file2 = json.load(json2)
+    file1 = get_extension(file_path1)
+    file2 = get_extension(file_path2)
     all_keys = set(file1.keys()) | set(file2.keys())
     all_keys_sorted = sorted(all_keys)
     diff = []
