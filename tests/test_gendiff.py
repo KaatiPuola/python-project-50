@@ -11,21 +11,12 @@ def get_path(file_name):
     return os.path.join(CONST_PATH, file_name)
 
 
-@pytest.mark.parametrize(
-    'name_file1, name_file2, expected_result',
-    [
-        (
-             'file1.json',
-             'file2.json',
-             'result_json.txt'
-        ),
-        (
-             'file1.yml',
-             'file2.yml',
-             'result_json.txt'
-        )
-    ]
-)
+@pytest.mark.parametrize('name_file1, name_file2, expected_result',[
+        ('file1.json', 'file2.json', 'result_json.txt'),
+        ('file1.yml', 'file2.yml', 'result_json.txt'),
+        ('nested_file1.json', 'nested_file2.json', 'result_nested.txt'),
+        ('nested_file1.yaml', 'nested_file2.yaml', 'result_nested.txt')
+])
 
 
 def test_generate_diff(name_file1, name_file2, expected_result):
