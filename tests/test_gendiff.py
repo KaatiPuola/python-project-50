@@ -17,7 +17,9 @@ def get_path(file_name):
         ('nested_file1.json', 'nested_file2.json', 'stylish', 'result_nested.txt'),
         ('nested_file1.yaml', 'nested_file2.yaml', 'stylish', 'result_nested.txt'),
         ('nested_file1.json', 'nested_file2.json', 'plain', 'result_plain.txt'),
-        ('nested_file1.yaml', 'nested_file2.yaml', 'plain', 'result_plain.txt')
+        ('nested_file1.yaml', 'nested_file2.yaml', 'plain', 'result_plain.txt'),
+        ('nested_file1.yaml', 'nested_file2.yaml', 'json', 'result_format_json.txt'),
+        ('nested_file1.json', 'nested_file2.json', 'json', 'result_format_json.txt')
 ])
 
 
