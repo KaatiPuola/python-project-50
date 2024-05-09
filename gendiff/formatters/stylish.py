@@ -1,3 +1,7 @@
+REPLACER = ' '
+SPACER_COUNT = 4
+
+
 def transform_values(value):
     if isinstance(value, bool):
         value = str(value).lower()
@@ -6,40 +10,41 @@ def transform_values(value):
     return value
 
 
-def form_line(value, lvl=1, replacer=' ', spacer_count=4):
+def form_line(value, lvl=1):
     value = transform_values(value)
     if isinstance(value, dict):
-        indent = replacer * ((lvl * spacer_count - 2) + spacer_count)
+        indent = REPLACER * ((lvl * SPACER_COUNT - 2) + SPACER_COUNT)
         lines = []
         for key, inner_value in value.items():
             form_value = form_line(inner_value, lvl + 1)
             lines.append(f'{indent}  {key}: {form_value}')
         formatted_string = '\n'.join(lines)
-        end_indent = lvl * spacer_count * replacer
+        end_indent = lvl * SPACER_COUNT * REPLACER
         return f"{{\n{formatted_string}\n{end_indent}}}"
     return f"{value}"
 
 
-def build_stylish(diff, lvl=1, replacer=' ', spacer_count=4):
+def build_stylish(diff, lvl=1):
     lines = []
-    indent = (lvl * spacer_count - 2) * replacer
+    indent = (lvl * SPACER_COUNT - 2) * REPLACER
     for dictionary in diff:
         key = dictionary.get("key")
         old_value = form_line(dictionary.get("old_value"), lvl)
         new_value = form_line(dictionary.get("new_value"), lvl)
-        if dictionary['type'] == 'nested':
-            children = build_stylish(dictionary["children"], lvl + 1)
-            lines.append(f'{indent}  {key}: {children}')
-        if dictionary['type'] == 'added':
-            lines.append(f'{indent}+ {key}: {new_value}')
-        elif dictionary['type'] == 'removed':
-            lines.append(f'{indent}- {key}: {old_value}')
-        elif dictionary['type'] == 'unchanged':
-            lines.append(f'{indent}  {key}: {old_value}')
-        elif dictionary['type'] == 'changed':
-            lines.append(f'{indent}- {key}: {old_value}')
-            lines.append(f'{indent}+ {key}: {new_value}')
+        type = dictionary['type']
+        match type:
+            case 'nested':
+                children = build_stylish(dictionary["children"], lvl + 1)
+                lines.append(f'{indent}  {key}: {children}')
+            case 'added':
+                lines.append(f'{indent}+ {key}: {new_value}')
+            case 'removed':
+                lines.append(f'{indent}- {key}: {old_value}')
+            case 'unchanged':
+                lines.append(f'{indent}  {key}: {old_value}')
+            case 'changed':
+                lines.append(f'{indent}- {key}: {old_value}')
+                lines.append(f'{indent}+ {key}: {new_value}')
     formatted_string = '\n'.join(lines)
-    end_indent = replacer * (lvl * spacer_count - 4)
-    result = f"{{\n{formatted_string}\n{end_indent}}}"
-    return result
+    end_indent = REPLACER * (lvl * SPACER_COUNT - 4)
+    return f"{{\n{formatted_string}\n{end_indent}}}"
