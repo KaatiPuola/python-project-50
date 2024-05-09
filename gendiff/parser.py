@@ -8,6 +8,7 @@ def parse_data(file, extension):
         return json.load(file)
     elif extension in ['yaml', 'yml']:
         return yaml.safe_load(file)
+    raise ValueError(f"Incorrect file extension: ({extension})")
 
 
 def get_extension(file_path):
