@@ -2,16 +2,11 @@ REPLACER = ' '
 SPACER_COUNT = 4
 
 
-def transform_values(value):
-    if isinstance(value, bool):
-        value = str(value).lower()
-    elif value is None:
-        value = 'null'
-    return value
-
-
 def form_line(value, lvl=1):
-    value = transform_values(value)
+    if isinstance(value, bool):
+        return str(value).lower()
+    if value is None:
+        return 'null'
     if isinstance(value, dict):
         indent = REPLACER * ((lvl * SPACER_COUNT - 2) + SPACER_COUNT)
         lines = []
