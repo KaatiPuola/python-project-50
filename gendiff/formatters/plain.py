@@ -1,15 +1,13 @@
 def get_value(value):
     if isinstance(value, bool):
-        mod_value = str(value).lower()
-    elif value is None:
-        mod_value = 'null'
-    elif isinstance(value, dict):
-        mod_value = '[complex value]'
-    elif not isinstance(value, str):
-        mod_value = value
-    else:
-        mod_value = f"'{value}'"
-    return mod_value
+        return str(value).lower()
+    if value is None:
+        return 'null'
+    if isinstance(value, dict):
+        return '[complex value]'
+    if not isinstance(value, str):
+        return value
+    return f"'{value}'"
 
 
 def build_plain(diff, path=''):
