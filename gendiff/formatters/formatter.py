@@ -10,4 +10,4 @@ def get_format(diff, formatter):
         return build_plain(diff)
     elif formatter == 'json':
         return build_json(diff)
-    raise ValueError(f"Incorrect format!")
+    raise ValueError(f'Incorrect format!')
