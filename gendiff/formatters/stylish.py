@@ -2,7 +2,7 @@ REPLACER = ' '
 SPACER_COUNT = 4
 
 
-def form_line(value, lvl=1):
+def transform_to_str(value, lvl=1):
     if isinstance(value, bool):
         return str(value).lower()
     if value is None:
@@ -11,7 +11,7 @@ def form_line(value, lvl=1):
         indent = REPLACER * ((lvl * SPACER_COUNT - 2) + SPACER_COUNT)
         lines = []
         for key, inner_value in value.items():
-            form_value = form_line(inner_value, lvl + 1)
+            form_value = transform_to_str(inner_value, lvl + 1)
             lines.append(f'{indent}  {key}: {form_value}')
         formatted_string = '\n'.join(lines)
         end_indent = lvl * SPACER_COUNT * REPLACER
@@ -24,8 +24,8 @@ def build_stylish(diff, lvl=1):
     indent = (lvl * SPACER_COUNT - 2) * REPLACER
     for dictionary in diff:
         key = dictionary.get("key")
-        old_value = form_line(dictionary.get("old_value"), lvl)
-        new_value = form_line(dictionary.get("new_value"), lvl)
+        old_value = transform_to_str(dictionary.get("old_value"), lvl)
+        new_value = transform_to_str(dictionary.get("new_value"), lvl)
         type = dictionary['type']
         match type:
             case 'nested':
