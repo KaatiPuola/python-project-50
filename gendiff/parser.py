@@ -3,15 +3,15 @@ import json
 import yaml
 
 
-def parse_data(file, extension):
-    if extension == 'json':
-        return json.load(file)
-    elif extension in ['yaml', 'yml']:
-        return yaml.safe_load(file)
-    raise ValueError(f"Incorrect file extension: ({extension})")
+def parse(content, format_name):
+    if format_name == 'json':
+        return json.load(content)
+    elif format_name in ['yaml', 'yml']:
+        return yaml.safe_load(content)
+    raise ValueError(f"Incorrect file extension: ({format_name})")
 
 
-def get_extension(file_path):
+def get_content(file_path):
     _, file_extension = os.path.splitext(file_path)
     with open(file_path, 'r') as file:
-        return parse_data(file, file_extension[1:])
+        return parse(file, file_extension[1:])
