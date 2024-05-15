@@ -41,7 +41,7 @@ def to_nested(key, value1, value2):
 
 def build_diff(file1, file2):
     diff = []
-    all_keys = set(file1.keys()) | set(file2.keys())
+    all_keys = sorted(set(file1.keys()) | set(file2.keys()))
     added = set(file2.keys()) - set(file1.keys())
     removed = set(file1.keys()) - set(file2.keys())
     for key in all_keys:
@@ -57,5 +57,4 @@ def build_diff(file1, file2):
             diff.append(to_unchanged(key, value1))
         else:
             diff.append(to_change(key, value1, value2))
-    sorted_diff = sorted(diff, key=lambda x: x['key'])
-    return sorted_diff
+    return diff
