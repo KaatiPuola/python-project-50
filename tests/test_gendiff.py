@@ -4,7 +4,8 @@ import os
 from gendiff.gendiff import generate_diff
 
 
-FIXTURE_PATH = './tests/fixtures/'
+TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
+FIXTURE_PATH = f"{TESTS_DIR}/fixtures"
 
 
 def get_path(file_name):
